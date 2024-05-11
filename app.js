@@ -7,13 +7,17 @@ var logger = require('morgan');
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var travelRouter = require('./app_server/routes/travel');
+var apiRouter = require('./app_api/routes/index');
+
 var handlebars = require('hbs');
+
+// Bring in the database
+require('./app_api/models/db');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
-app.set('view engine', 'hbs');
 
 // register handlebars partials
 handlebars.registerPartials(__dirname + '/app_server/views/partials', function (err) {});
@@ -29,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/travel', travelRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
