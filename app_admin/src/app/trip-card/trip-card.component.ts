@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Trip } from '../models/trip';
 import { AuthenticationService } from '../services/authentication.service';
 import { TripDataService } from '../services/trip-data.service';
@@ -19,6 +19,7 @@ export class TripCardComponent implements OnInit {
   
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
     private tripDataService: TripDataService
   ) {}
@@ -41,6 +42,10 @@ export class TripCardComponent implements OnInit {
 
   public isAgent(): boolean {
     return this.isLoggedIn() && (this.getRole() == "Agent");
+  }
+
+  public isTripListing(): boolean {
+    return this.route.snapshot.url.join('') == 'list-trips';
   }
 
   public bookTrip(trip: Trip) {

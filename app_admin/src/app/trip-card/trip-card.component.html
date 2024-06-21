@@ -10,11 +10,11 @@
         </p>
         <p class="card-text" [innerHTML]="trip.description">
         </p>
-        <div *ngIf="isAdmin()">
+        <div *ngIf="isAdmin() && isTripListing()">
             <button (click)="editTrip(trip)" class="btn btn-info me-3">Edit Trip</button>
             <button (click)="deleteTrip(trip)" class="btn btn-info">Delete Trip</button>
         </div>
-        <div *ngIf="isAgent()">
+        <div *ngIf="isAgent() && isTripListing()">
             <button (click)="bookTrip(trip)" class="btn btn-info">Book Trip</button>
         </div>
     </div>
