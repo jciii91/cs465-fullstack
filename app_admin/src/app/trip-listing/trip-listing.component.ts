@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { trips } from '../data/trips';
 import { TripCardComponent } from '../trip-card/trip-card.component';
 
 import { Trip } from '../models/trip';
@@ -27,19 +26,25 @@ export class TripListingComponent implements OnInit {
     private tripDataService: TripDataService,
     private router: Router,
     private authenticationService: AuthenticationService
-  ) {
-    console.log('trip-listing constructor');
-  } 
+  ) {}
 
-  public isLoggedIn(): boolean {
+  private isLoggedIn(): boolean {
     return this.authenticationService.isLoggedIn();
+  }
+
+  private getRole(): string {
+    return this.authenticationService.getCurrentUser().role || "";
+  }
+
+  public isAdmin(): boolean {
+    return this.isLoggedIn() && (this.getRole() == "Admin");
   }
   
   public addTrip(): void {
     this.router.navigate(['add-trip']);
   }
 
-  private getStuff(): void {
+  public getTrips(): void {
     this.tripDataService.getTrips()
     .subscribe({
       next: (value: any) => {
@@ -59,7 +64,6 @@ export class TripListingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit');
-    this.getStuff();
+    this.getTrips();
   }
 }

@@ -67,4 +67,5 @@ connect();
 // Import Mongoose schema
 require('./travlr');
 require('./user');
+require('./booking');
 module.exports = mongoose;

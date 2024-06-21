@@ -7,9 +7,10 @@ const auth = jwt({
     algorithms: ["HS256"]
 });
 
-// This is where we import the controllers we will route
+// controllers
 const authController = require('../controllers/authentication');
 const tripsController = require('../controllers/trips');
+const bookingsController = require('../controllers/bookings');
 
 // define routes for authentication
 router
@@ -18,6 +19,14 @@ router
 
 router
     .route('/register')
+    .post(authController.register);
+
+router
+    .route('/register/agent')
+    .post(authController.register);
+
+router
+    .route('/register/admin')
     .post(authController.register);
 
 // define route for our trips endpoint
@@ -30,6 +39,17 @@ router
 router
     .route('/trips/:tripCode')
     .get(tripsController.tripsFindByCode)
-    .put(auth, tripsController.tripsUpdateTrip);
+    .put(auth, tripsController.tripsUpdateTrip)
+    .delete(auth, tripsController.tripsDeleteTrip);
+
+// define route for trips that have been booked
+router
+    .get('/booked-trips', tripsController.tripsListFiltered); // GET method returns list filtered by params
+
+// define route for our bookings endpoint
+router
+    .route('/bookings')
+    .get(auth, bookingsController.bookingsGetBookings)  // GET all Bookings for a User 
+    .post(auth, bookingsController.bookingsAddBooking); // POST Method adds a Booking
 
 module.exports = router;

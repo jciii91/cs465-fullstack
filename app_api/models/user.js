@@ -12,6 +12,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    role: {
+        type: String,
+        required: true
+    },
+    membershipID: {
+        type: String,
+        required: true,
+        unique: true
+    },
     hash: String,
     salt: String
 });
@@ -33,8 +42,12 @@ userSchema.methods.generateJwt = function() {
         _id: this._id,
         email: this.email,
         name: this.name,
+        role: this.role,
+        membershipID: this.membershipID,
         exp: parseInt(expiry.getTime() / 1000, 10),
     }, process.env.JWT_SECRET); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };
 
-mongoose.model('users', userSchema);
+const User = mongoose.model('users', userSchema);
+
+module.exports = User;

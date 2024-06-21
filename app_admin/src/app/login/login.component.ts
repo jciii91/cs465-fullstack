@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  public goToRegister(): void {
+    this.router.navigateByUrl('register');
+  }
+
   private doLogin(): void {
     this.authenticationService.login(this.credentials)
     .then(() => this.router.navigateByUrl('list-trips'))

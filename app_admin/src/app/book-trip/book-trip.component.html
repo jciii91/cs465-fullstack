@@ -1,0 +1,22 @@
+<div class="col-md-4">
+    <h2 class="text-center">Book Trip</h2>
+    <form *ngIf="bookForm" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Trip Code:</label>
+            <input type="text" formControlName="tripCode" placeholder="Trip Code" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['tripCode'].errors }">
+            <div *ngIf="submitted && f['tripCode'].errors">
+                <div *ngIf="f['tripCode'].errors?.['required']">Trip Code is required</div>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label>Traveler ID:</label>
+            <input type="text" formControlName="travelerID" placeholder="Travler ID" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['travelerID'].errors }">
+            <div *ngIf="submitted && f['travelerID'].errors">
+                <div *ngIf="f['travelerID'].errors?.['required']">Travler ID is required</div>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-info">Save</button>
+    </form>
+</div>

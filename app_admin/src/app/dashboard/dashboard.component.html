@@ -1,0 +1,22 @@
+<div *ngIf="isAgent()">
+    <div class="row">
+        <div class="col-md-12">
+            <label for="dropdown">Choose a traveler:</label>
+            <select id="dropdown" [(ngModel)]="selectedTravelerID" class="form-control">
+                <option value="">All Travelers</option>
+                <option *ngFor="let id of travelerIDs" [value]="id">{{ id }}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div *ngFor="let traveler of travelerIDs" class="mt-2">
+        <div *ngIf="shouldDisplayTraveler(traveler)">
+            <h3>Traveler ID: {{ traveler }}</h3>
+            <div *ngFor="let booking of bookings" class="col-md-4 mt-2">
+                <app-trip-card [trip]="tripsMap.get(booking.tripCode)" *ngIf="shouldDisplayBooking(traveler, booking.travelerID)" class="card-deck mt-2"></app-trip-card>
+            </div>
+        </div>
+    </div>
+</div>

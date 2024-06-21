@@ -74,6 +74,35 @@ const tripsFindByCode = async(req, res) => {
     }
 };
 
+// GET: /trips/booked - list of trips found in bookings
+const tripsListFiltered = async (req, res) => {
+    try {
+        // Extract tripCodes from query parameters
+        const codes = Array.isArray(req.query.code) ? req.query.code : [req.query.code];
+
+        // Check if tripCodes is an array and not empty
+        if (!Array.isArray(codes) || codes.length === 0) {
+            return res.status(400).json({ message: 'No codes provided' });
+        }
+
+        // Use codes to filter the trips
+        const trips = await Model.find({
+            'code': { $in: codes }
+        }).exec();
+
+        // Check if any trips were found
+        if (!trips || trips.length === 0) {
+            return res.status(404).json({ message: 'No trips found for the provided codes' });
+        }
+
+        // Return the filtered trips
+        return res.status(200).json(trips);
+    } catch (err) {
+        // Handle any errors that occurred during the query
+        return res.status(500).json({ message: 'An error occurred', error: err.message });
+    }
+};
+
 // POST: /trips - Adds a new Trip
 // Regardless of outcome, response must include HTML status code
 // and JSON message to the requesting client
@@ -105,7 +134,7 @@ const tripsAddTrip = async (req, res) => {
     );
 }     
 
-// PUT: /trips/:tripCode - Adds a new Trip
+// PUT: /trips/:tripCode - Updates a new Trip
 // Regardless of outcome, response must include HTML status code
 // and JSON message to the requesting client
 const tripsUpdateTrip = async (req, res) => {
@@ -145,9 +174,42 @@ const tripsUpdateTrip = async (req, res) => {
     });
 }
 
+// DELETE: /trips/:tripCode - Deletes an existing Trip
+// Regardless of outcome, response must include HTML status code
+// and JSON message to the requesting client
+const tripsDeleteTrip = async (req, res) => {
+    getUser(req, res, (req, res) => {
+        Trip
+        .findOneAndDelete({'code': req.params.tripCode })
+        .then(trip => {
+            if (!trip) {
+                return res
+                .status(404)
+                .send({
+                    message: "Trip not found with code" + req.params.tripCode
+                });
+            }
+            res.send(trip);
+        }).catch(err => {
+            if (err.kind === 'ObjectId') {
+                return res
+                .status(404)
+                .send({
+                    message: "Trip not found with code" + req.params.tripCode
+                });
+            }
+            return res
+            .status(500) // server error
+            .json(err);
+        });
+    });
+}
+
 module.exports = {
     tripsList,
     tripsFindByCode,
     tripsAddTrip,
-    tripsUpdateTrip
+    tripsUpdateTrip,
+    tripsDeleteTrip,
+    tripsListFiltered
 };
