@@ -1,7 +1,7 @@
 # Travlr Getaways
 
 ## Description
-Travlr Getaways is a mock travel booking website. Users can register accounts at the three register endpoints of `/`, `/agent`, and `/admin` to create accounts with those respective roles. Regular users, known as travelers, can view available trips and bookings made for them. Agents can do all of the same but can also book trips for other users. Admin users have all of the above but can also add, edit, and delete trips from the database.
+Travlr Getaways is a mock travel booking website. Users can register accounts as a regular user, an agent, or an admin. Regular users, known as travelers, can view available trips and bookings made for them. Agents can do all of the same but can also book trips for other users. Admin users have all of the above but can also add, edit, and delete trips from the database.
 
 ## Installation Instructions
 To set up the project, follow these steps:
