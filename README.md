@@ -8,8 +8,8 @@ To set up the project, follow these steps:
 
 1. **Clone the Repository**: 
    ```sh
-   git clone https://github.com/your-repo/travlr-getaways.git
-   cd travlr-getaways
+   git clone https://github.com/jciii91/cs465-fullstack.git
+   cd cs465-fullstack
 
 2. **Install Backend Dependencies**:
    ```sh
