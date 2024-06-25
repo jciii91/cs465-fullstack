@@ -1,3 +1,25 @@
+# Module 8 Journal Reponses
+
+1. **Architecture**
+- Compare and contrast the types of frontend development you used in your full stack project, including Express HTML, JavaScript, and the single-page application (SPA).
+   - Express HTML involves using the Express framework to render HTML on the server, which is then sent to the client's browser, leading to full page reloads for navigation and better SEO due to server-side rendering. In contrast, JavaScript, often used with frameworks like React or Angular, runs on the client-side to dynamically update the content without full page reloads, allowing for more interactive and responsive user experiences. A single-page application (SPA) takes this further by loading a single HTML page and dynamically updating content as the user interacts with the app, offering a seamless and fast navigation experience similar to desktop applications, though potentially less SEO-friendly due to its client-side nature.
+- Why did the backend use a NoSQL MongoDB database?
+   - The syntax used when working with MongoDB is very similar to object notation used when working in JavaScript.
+
+2. **Functionality**
+- How is JSON different from Javascript and how does JSON tie together the frontend and backend development pieces?
+   - JSON is a lightweight data interchange format that is easy to read and write, used primarily to transmit data between a server and a web application. Unlike JavaScript, which is a full-fledged programming language used to create dynamic and interactive web content, JSON is just a format for structuring data. JSON ties together frontend and backend development by providing a common format for data exchange, allowing the frontend to send requests and receive responses in a consistent and easily parseable format from the backend, facilitating seamless communication between the two.
+- Provide instances in the full stack process when you refactored code to improve functionality and efficiencies, and name the benefits that come from reusable user interface (UI) components.
+   - Changing the application to an SPA helped a lot in increasing the efficiency of the project. Being able to create reusable UI components significantly cut down on reused code and freed up a lot of time that could be spent elsewhere.
+ 
+3. **Testing**
+- Methods for request and retrieval necessitate various types of API testing of endpoints, in addition to the difficulties of testing with added layers of security. Explain your understanding of methods, endpoints, and security in a full stack application.
+   - In a full stack application, methods refer to the HTTP methods (GET, POST, PUT, DELETE) used to perform actions on resources. Endpoints are specific URLs or routes in the server that handle these HTTP requests, often defined in the backend to perform operations like retrieving data, creating new entries, updating existing data, or deleting records. Security in a full stack application involves measures to protect data and ensure that only authorized users can perform certain actions. This includes implementing authentication (verifying user identity), authorization (ensuring users have permission to access resources), and data encryption (protecting data in transit and at rest), as well as following best practices like input validation and using HTTPS to secure communications.
+
+4. **Reflection**
+- How has this course helped you in reaching your professional goals? What skills have you learned, developed, or mastered in this course to help you become a more marketable candidate in your career field?
+   - Through the completion of this course I have gained knowledge of new web development technologies and refined my existing abilities in parts of the MEAN stack. I also have added a valuable entry to my professional portfolio which I can use to showcase my skills to potential employers.
+
 # Travlr Getaways
 
 ## Description
